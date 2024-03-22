@@ -30,6 +30,7 @@ interface IBlogContext {
   post: IPostItem
   postCount: number
   fetchPost: (postId: number) => Promise<void>
+  fetchPosts: (query: string) => Promise<void>
 }
 
 interface IBlogContextProvider {
@@ -68,14 +69,13 @@ export const BlogContextProvider = ({ children }: IBlogContextProvider) => {
   const fetchPosts = useCallback(async (query?: string) => {
     try {
       const call = query
-        ? `${query}%20repo:${import.meta.env.VITE_GITHUB_USER}/${import.meta.env.VITE_GITHUB_REPO}`
+        ? `${query} repo:${import.meta.env.VITE_GITHUB_USER}/${import.meta.env.VITE_GITHUB_REPO}`
         : `repo:${import.meta.env.VITE_GITHUB_USER}/${import.meta.env.VITE_GITHUB_REPO}`
       const response = await api.get('/search/issues', {
         params: {
           q: call,
         },
       })
-
       const postData = response.data.items.map((item: IPost) => {
         return {
           id: item.number,
@@ -123,7 +123,9 @@ export const BlogContextProvider = ({ children }: IBlogContextProvider) => {
   }, [fetchPosts])
 
   return (
-    <BlogContext.Provider value={{ user, posts, post, postCount, fetchPost }}>
+    <BlogContext.Provider
+      value={{ user, posts, post, postCount, fetchPost, fetchPosts }}
+    >
       {children}
     </BlogContext.Provider>
   )

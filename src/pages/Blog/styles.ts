@@ -5,7 +5,7 @@ export const BlogContainer = styled.main`
   flex-direction: column;
   max-width: 54rem;
   width: 100%;
-  margin: -4.3rem auto 0;
+  margin: -4.3rem auto 4rem;
 
   @media only screen and (max-width: 768px) {
     padding: 0 1rem;
