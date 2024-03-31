@@ -1,4 +1,15 @@
-# React + TypeScript + Vite
+# GitHub Blog
+
+## Curso: Módulo e Desafio HTTP e Performance na Rocketseat (módulo 03)
+
+- **vite**
+- **react**
+- **typescript**
+- **styled-components**
+
+Projeto de um blog usando as issues de um repositório Git como os posts, consumindo a API do github, e montando o app usando `vite` com `react`
+
+---
 
 Para rodar o projeto, depois de clonar o repositório você precisa fazer os passos:
 
